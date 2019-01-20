@@ -1,5 +1,8 @@
 .navb{
     font-family: 'Roboto Slab', serif;
+    position: sticky;
+    top: 0;
+    z-index: 1071;
 }
 
 .nav-link{
