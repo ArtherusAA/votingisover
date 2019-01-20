@@ -1,9 +1,48 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
-<body>
-<h1>ГОЛОСОВАНИЕ ЗАВЕРШЕНО</h1>
+<body class="d-flex flex-column h-100">
+<div class="bg-info navb">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Аккаунт</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Голосования</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Создать голосование</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Вход</a>
+        </li>
+    </ul>
+</div>
+<main role="main" class="flex-shrink-0">
+    <div class="container voteform bg-light border border-secondary rounded">
+        <div class="custom-control custom-radio">
+            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="customRadio1">Var1</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="customRadio2">Var2</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="customRadio3">Var3</label>
+        </div>
+        <div  class="custom-control">
+            <button type="submit" class="btn btn-primary">Проголосовать</button>
+        </div>
+    </div>
+</main>
 </body>
 </html>

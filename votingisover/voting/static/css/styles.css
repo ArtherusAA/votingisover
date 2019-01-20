@@ -1,0 +1,18 @@
+.navb{
+    font-family: 'Roboto Slab', serif;
+}
+
+.nav-link{
+    color: white;
+    font-size: 25px;
+    padding: .5rem 5rem !important;
+}
+
+.voteform{
+    padding: 2rem 15rem 2rem 15rem !important;
+    margin-top: 2rem;
+}
+
+.custom-control{
+    margin-top: 5px;
+}
