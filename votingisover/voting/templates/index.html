@@ -12,7 +12,7 @@
 <div class="bg-info navb">
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link" href="#">Аккаунт</a>
+            <a class="nav-link" href="#">{{ username }}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Голосования</a>
@@ -20,9 +20,15 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Создать голосование</a>
         </li>
+        {% if username != "AnonymousUser" %}
         <li class="nav-item">
-            <a class="nav-link" href="#">Вход</a>
+            <a class="nav-link" href="/signup">Регистрация</a>
         </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="/exit">Выход</a>
+        </li>
+        {% endif %}
     </ul>
 </div>
 <main role="main" class="flex-shrink-0">

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Регистрация</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+<body>
+  <div class="bg-info navb">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="#">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Голосования</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Создать голосование</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/signup">Регистрация</a>
+        </li>
+    </ul>
+</div>
+  <div style="margin-bottom: 1rem; padding-bottom: 1rem" class="rounded-bottom container bg-dark text-white">
+    <div class="text-r">Еще не зарегестрированы?</div>
+    <br>
+    <a class="badge badge-primary" href="/signup/">Регистрация</a>
+  </div>
+    <div class="container">
+    <h2>Авторизация</h2>
+    <form action="/login/" method="POST" >
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+          <div class="form-control">
+            {{ field.label_tag }}
+            {{ field }}
+          </div>
+        </div>
+        {% endfor %}
+        <input class="btn btn-success" type="submit" value="Sign in">
+        {% if form.errors %}
+        <br>
+        <p class="text-danger">Your username and password didn't match. Please try again.</p>
+        {% endif %}
+    </form>
+    </div>
+    {% if login_error %} # если вышла ошибка или такой пользователь не существует
+    <label class="error">{{ login_error }}</label>
+    {% endif %}
+</body>
+</html>

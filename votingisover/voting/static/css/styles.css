@@ -17,5 +17,9 @@
 }
 
 .custom-control{
-    margin-top: 5px;
+    height: calc(3rem + 2px) !important;
+}
+
+.text-r{
+    font-family: 'Roboto Slab', serif;
 }
