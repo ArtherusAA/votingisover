@@ -3,6 +3,8 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render
+from voting.models import VotingDescription
+from voting.models import VotingInformation
 
 
 # Create your views here.
@@ -29,6 +31,7 @@ def voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
+    context['votings'] = VotingDescription.objects.all()
     return render(request, 'registration/votingisover.html', context)
 
 
