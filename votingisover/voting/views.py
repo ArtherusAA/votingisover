@@ -26,14 +26,10 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 def voting(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'registration/votingisover.html', {'form': form})
+    context = {}
+    current_user = request.user
+    context['username'] = current_user
+    return render(request, 'registration/votingisover.html', context)
 
 
 def exit(request):
