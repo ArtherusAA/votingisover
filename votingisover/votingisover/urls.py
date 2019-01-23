@@ -25,5 +25,6 @@ urlpatterns = [
     path('login/',
          auth_views.LoginView.as_view(),
          name='login'),
-    path('exit/', views.exit)
+    path('exit/', views.exit),
+    path('voting/', views.voting)
 ]
