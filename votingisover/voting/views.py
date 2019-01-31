@@ -34,6 +34,13 @@ def voting(request):
     context['votings'] = VotingDescription.objects.all()
     return render(request, 'registration/votingisover.html', context)
 
+def make_voting(request):
+    context = {}
+    current_user = request.user
+    context['username'] = current_user
+    context['votings'] = VotingDescription.objects.all()
+    return render(request, 'make_voting.html', context)
+
 
 def exit(request):
     logout(request)

@@ -17,34 +17,19 @@
             <a class="nav-link" href="/voting">Голосования</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/make_voting">Создать голосование</a>
+            <a class="nav-link" href="/signup">Регистрация</a>
         </li>
     </ul>
-</div>
-  <div style="margin-bottom: 1rem; padding-bottom: 1rem" class="rounded-bottom container bg-dark text-white">
-    <div class="text-r">Уже зарегестрированы?</div>
-    <br>
-    <a class="badge badge-primary" href="/login/">Войдите</a>
   </div>
-    {% block content %}
+  <div class="container">
     <div class="container">
-    <h2>Регистрация</h2>
-    <form method="post">
-      {% csrf_token %}
-      {% for field in form %}
-      <div class="form-group">
-        <div class="form-control">
-          {{ field.label_tag }}
-          {{ field }}
-        </div>
-      </div>
-      {% for error in field.errors %}
-          <p>{{ error }}</p>
-        {% endfor %}
-      {% endfor %}
-      <button class="btn btn-success" type="submit">Отправить</button>
-    </form>
-    </div>
+    <h2>Конструктор Голосования</h2>
+  
+  </div>
+
+
+    {% block content %}
+
   {% endblock %}
   </body>
 </html>
