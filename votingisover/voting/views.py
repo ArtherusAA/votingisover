@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from voting.models import VotingDescription
 from voting.models import VotingInformation
+from voting.forms import VotingForm
 
 
 # Create your views here.
@@ -38,3 +39,12 @@ def voting(request):
 def exit(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+def makeVote(request):
+    if request.method == 'POST':
+        form = VotingForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            
+    else:
+        form = VotingForm()
