@@ -11,3 +11,4 @@ class VotingDescription(models.Model):
     header = models.CharField(max_length=1024)
     variantFirstDescr = models.CharField(max_length=1000)
     variantSecondDescr = models.CharField(max_length=1000)
+    info = models.ForeignKey(VotingInformation, on_delete = models.CASCADE)
