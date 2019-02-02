@@ -10,9 +10,9 @@ class Voting(models.Model):
 
 class Variant(models.Model):
     text = models.CharField(max_length=1024)
-    votind_id =  models.ForeignKey(Voting, on_delete = models.CASCADE)
+    voting_id =  models.ForeignKey(Voting, on_delete = models.CASCADE)
 
 class Vote(models.Model):
-    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
-    variant_id = models.ForeignKey(Variant, on_delete = models.CASCADE)
     date = models.DateTimeField()
+    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    variant_id = models.ForeignKey(Variant, on_delete = models.CASCADE) #Вариант из формыыыы
