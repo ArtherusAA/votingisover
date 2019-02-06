@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from voting.models import Voting
 from voting.forms import VotingForm
+from django import forms
 
 
 # Create your views here.
@@ -34,14 +35,22 @@ def voting(request):
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
-        next_voting = {}
-        next_voting['header'] = voting.header
-        next_voting['type'] = voting.type
-        next_voting['variants'] = []
+        variants = []
         for variant in all_variants:
             if variant.voting_id == voting:
-                next_voting['variants'].append(variant)
-        context['votings'].append(next_voting)
+                variants.append(variant)
+        context['votings'].append(VotingForm(header = voting.header,
+                                type = voting.type, vote = forms.ChoiceField(
+                                choices = variants, widget = forms.RadioSelect)))
+##    for voting in Voting.objects.all():
+##        next_voting = {}
+##        next_voting['header'] = voting.header
+##        next_voting['type'] = voting.type
+##        next_voting['variants'] = []
+##        for variant in all_variants:
+##            if variant.voting_id == voting:
+##                next_voting['variants'].append(variant)
+##        context['votings'].append(next_voting)
     return render(request, 'registration/votingisover.html', context)
 
 def make_voting(request):
