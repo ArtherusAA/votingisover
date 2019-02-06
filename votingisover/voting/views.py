@@ -31,7 +31,17 @@ def voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
-    context['votings'] = Voting.objects.all()
+    context['votings'] = []
+    all_variants = Variant.objects.all()
+    for voting in Voting.objects.all():
+        next_voting = {}
+        next_voting['header'] = voting.header
+        next_voting['type'] = voting.type
+        next_voting['variants'] = []
+        for variant in all_variants:
+            if variant.voting_id == voting:
+                next_voting['variants'].append(variant)
+        context['votings'].append(next_voting)
     return render(request, 'registration/votingisover.html', context)
 
 def make_voting(request):
