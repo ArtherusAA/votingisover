@@ -3,8 +3,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render
-from voting.models import VotingDescription
-from voting.models import VotingInformation
+from voting.models import Voting
 from voting.forms import VotingForm
 
 
@@ -32,7 +31,7 @@ def voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
-    context['votings'] = VotingDescription.objects.all()
+    context['votings'] = Voting.objects.all()
     return render(request, 'registration/votingisover.html', context)
 
 def make_voting(request):
@@ -52,6 +51,6 @@ def makeVote(request):
         form = VotingForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            
+
     else:
         form = VotingForm()
