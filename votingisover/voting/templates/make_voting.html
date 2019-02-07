@@ -30,7 +30,7 @@
         {% for variant in form.variants %}
         <br>
         <label for="{{variant.label}}">{{variant.label}}</label>
-        <input type="text" name="{{variant.label}}" id="{{variant.label}}">
+        <input type="text" name="{{variant.label}}" id="{{variant.id}}">
         {% endfor %}
         <input type="submit" value="Submit">
     </form>
