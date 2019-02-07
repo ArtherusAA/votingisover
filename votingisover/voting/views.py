@@ -4,9 +4,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render
 from voting.models import Voting
-from voting.forms import VotingForm
-from voting.models import Vote
-import datetime
+from voting.forms import VotingForm, CreateVotingForm
+from django import forms
+
 
 
 # Create your views here.
@@ -33,17 +33,35 @@ def voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
-    context['votings'] = Voting.objects.all()
-    if request.method == 'POST':
-        newVote = Vote(date = datetime.datetime.now(), user_id = request.user)
-        newVote.save()
+    context['votings'] = []
+    all_variants = Variant.objects.all()
+    for voting in Voting.objects.all():
+        variants = []
+        for variant in all_variants:
+            if variant.voting_id == voting:
+                variants.append(variant)
+        context['votings'].append(VotingForm(header = voting.header,
+                                type = voting.type, vote = forms.ChoiceField(
+                                choices = variants, widget = forms.RadioSelect)))
     return render(request, 'registration/votingisover.html', context)
 
 def make_voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
-    context['votings'] = VotingDescription.objects.all()
+    context['form'] = CreateVotingForm()
+    context['form'].variants.append(forms.CharField(label="Variant 1"))
+    context['form'].variants.append(forms.CharField(label="Variant 2"))
+    if request.method == 'POST':
+        form = CreateVotingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            voting = Voting(type = form.type, header = form.header)
+            voting.save()
+            variants = []
+            for variant in form.variants:
+                variants.append(Variant(text = variant, voting_id = voting))
+                variants[-1].save()
     return render(request, 'make_voting.html', context)
 
 
