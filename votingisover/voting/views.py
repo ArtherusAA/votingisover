@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render
 from voting.models import Voting
-from voting.forms import VotingForm
+from voting.forms import VotingForm, CreateVotingForm
 from django import forms
 
 
@@ -57,7 +57,10 @@ def make_voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
-    context['votings'] = VotingDescription.objects.all()
+    context['form'] = CreateVotingForm()
+    context['form'].variants.append(forms.CharField(label="Variant 1"))
+    context['form'].variants.append(forms.CharField(label="Variant 2"))
+    ##context['votings'] = VotingDescription.objects.all()
     return render(request, 'make_voting.html', context)
 
 
