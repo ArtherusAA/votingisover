@@ -58,7 +58,7 @@ def make_voting(request):
         voting.save()
         variants = []
         for k in keys:
-            if k != 'type' && k != 'header':
+            if k != 'type' and k != 'header':
                 variants.append(Variant(text = request.POST[k], voting_id = voting))
                 variants[-1].save()
     return render(request, 'make_voting.html', context)
