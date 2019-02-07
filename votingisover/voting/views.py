@@ -49,9 +49,6 @@ def make_voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
-    context['form'] = CreateVotingForm()
-    context['form'].variants.append(forms.CharField(label="Variant 1"))
-    context['form'].variants.append(forms.CharField(label="Variant 2"))
     if request.method == 'POST':
         keys = request.POST.keys()
         voting = Voting(type = request.POST['type'], header = request.POST['header'])
@@ -61,6 +58,10 @@ def make_voting(request):
             if k != 'type' and k != 'header':
                 variants.append(Variant(text = request.POST[k], voting_id = voting))
                 variants[-1].save()
+    else:
+        context['form'] = CreateVotingForm()
+        context['form'].variants.append(forms.CharField(label="Variant 1"))
+        context['form'].variants.append(forms.CharField(label="Variant 2"))
     return render(request, 'make_voting.html', context)
 
 
