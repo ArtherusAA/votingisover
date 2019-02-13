@@ -36,13 +36,15 @@ def voting(request):
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
-        variants = Variant.objects_Voting.all()
+        variants = all_variants.filter(voting_id = voting)
+        ##variants = Variant.objects.filter()
         ##for variant in all_variants:
             ##if variant.voting_id == voting:
                 ##variants.append(variant)
-        context['votings'].append(VotingForm(header = voting.header,
-                                type = voting.type, vote = forms.ChoiceField(
-                                choices = variants, widget = forms.RadioSelect)))
+        context['votings'].append({"header": voting.header, "type": voting.type,
+        "variants": variants})
+        ##context['votings'].append(VotingForm(header = voting.header,
+                                ##type = voting.type, vote = variants))
     return render(request, 'registration/votingisover.html', context)
 
 def make_voting(request):

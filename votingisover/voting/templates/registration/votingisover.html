@@ -35,17 +35,18 @@
         <div class="col">
             <img src="/media/tenor-2.gif" alt="тут должен быть Ricardo" class="leftpic">
         </div>
-        {{voting}}
-        <!--<div class="col">
+        <div class="col">
           <h3>{{voting.header}}</h3>
+          {% for variant in voting.variants %}
           <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-              <label class="custom-control-label" for="customRadio1">{{voting.variantFirstDescr}}</label>
+              <input type="radio" id="variant{{variant.id}}" name="variant{{variant.id}}" class="custom-control-input">
+              <label class="custom-control-label" for="variant{{variant.id}}">{{variant.text}}</label>
           </div>
+          {% endfor %}
           <div  class="custom-control">
               <button type="submit" class="btn btn-primary">Проголосовать</button>
           </div>
-        </div>-->
+        </div>
       </div>
 
 
