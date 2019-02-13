@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render
-from voting.models import Voting
+from voting.models import Voting, Variant, Vote
 from voting.forms import VotingForm, CreateVotingForm
 from django import forms
 
@@ -35,10 +35,10 @@ def voting(request):
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
-        variants = []
-        for variant in all_variants:
-            if variant.voting_id == voting:
-                variants.append(variant)
+        variants = Variant.objects_Voting.all()
+        ##for variant in all_variants:
+            ##if variant.voting_id == voting:
+                ##variants.append(variant)
         context['votings'].append(VotingForm(header = voting.header,
                                 type = voting.type, vote = forms.ChoiceField(
                                 choices = variants, widget = forms.RadioSelect)))
