@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render
-from voting.models import Voting
+from voting.models import Voting, Variant, Vote
 from voting.forms import VotingForm, CreateVotingForm
 from django import forms
 
@@ -55,7 +55,7 @@ def make_voting(request):
         voting.save()
         variants = []
         for k in keys:
-            if k != 'type' and k != 'header':
+            if k != 'type' and k != 'header' and k[:7] == 'Variant':
                 variants.append(Variant(text = request.POST[k], voting_id = voting))
                 variants[-1].save()
     else:
