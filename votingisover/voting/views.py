@@ -42,7 +42,7 @@ def voting(request):
             ##if variant.voting_id == voting:
                 ##variants.append(variant)
         context['votings'].append({"header": voting.header, "type": voting.type,
-        "variants": variants})
+        "id": voting.id, "variants": variants})
         ##context['votings'].append(VotingForm(header = voting.header,
                                 ##type = voting.type, vote = variants))
     return render(request, 'registration/votingisover.html', context)
