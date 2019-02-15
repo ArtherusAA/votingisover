@@ -37,15 +37,19 @@
         </div>
         <div class="col">
           <h3>{{voting.header}}</h3>
+          <form method="post">
+            {% csrf_token %}
           {% for variant in voting.variants %}
           <div class="custom-control custom-radio">
-              <input type="radio" id="variant{{variant.id}}" name="voting{{voting.id}}" class="custom-control-input">
+              <input type="radio" id="variant{{variant.id}}" name="voting{{voting.id}}"
+              value="variant{{variant.id}}" class="custom-control-input">
               <label class="custom-control-label" for="variant{{variant.id}}">{{variant.text}}</label>
           </div>
           {% endfor %}
           <div  class="custom-control">
               <button type="submit" class="btn btn-primary">Проголосовать</button>
           </div>
+        </form>
         </div>
       </div>
 

@@ -33,6 +33,8 @@ def voting(request):
     context = {}
     current_user = request.user
     context['username'] = current_user
+    if request.method == "POST":
+        print(request.POST)
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
