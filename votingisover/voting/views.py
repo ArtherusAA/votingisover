@@ -33,6 +33,8 @@ def signup(request):
 def voting(request):
     context = {}
     current_user = request.user
+    if not request.user.is_authenticated:
+        return redirect('/')
     context['username'] = current_user
     if request.method == "POST":
         for key in request.POST.keys():
@@ -60,6 +62,8 @@ def voting(request):
 def make_voting(request):
     context = {}
     current_user = request.user
+    if not request.user.is_authenticated:
+        return redirect('/')
     context['username'] = current_user
     context['form'] = CreateVotingForm()
     context['form'].variants = []
