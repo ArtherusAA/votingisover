@@ -6,6 +6,7 @@ from django.shortcuts import render
 from voting.models import Voting, Variant, Vote
 from voting.forms import VotingForm, CreateVotingForm
 from django import forms
+import datetime
 
 
 
@@ -34,7 +35,12 @@ def voting(request):
     current_user = request.user
     context['username'] = current_user
     if request.method == "POST":
-        print(request.POST)
+        for key in request.POST.keys():
+            if key[:6] == "voting":
+                variant_id = int(key[6:])
+                variant = Variant.objects.filter(id=variant_id)
+                vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant[0])
+                vote.save()
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
