@@ -43,6 +43,7 @@ def voting(request):
                 variant = Variant.objects.filter(id=variant_id)
                 vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant[0])
                 vote.save()
+            return redirect("/voting")
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
@@ -90,6 +91,7 @@ def make_voting(request):
                     variants[-1].save()
         else:
             context['form'] = CreateVotingForm()
+        return redirect("/make_voting")
     else:
         #context['form'] = CreateVotingForm()
         context['form'].variants.append(forms.CharField(label="Variant 1"))
