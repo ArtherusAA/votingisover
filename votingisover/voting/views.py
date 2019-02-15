@@ -37,7 +37,7 @@ def voting(request):
     if request.method == "POST":
         for key in request.POST.keys():
             if key[:6] == "voting":
-                variant_id = int(key[6:])
+                variant_id = int(request.POST[key][7:])
                 variant = Variant.objects.filter(id=variant_id)
                 vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant[0])
                 vote.save()
