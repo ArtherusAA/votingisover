@@ -6,6 +6,16 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script>
+    function add_variant_onclick() {
+        let id = 1;
+        while (document.getElementById(id) != null)
+          id += 1;
+        let add_code = "<br>\n        <label for=\"Variant " + id + "\">Variant " + id + "</label>\n                <input type=\"text\" name=\"Variant " + id + "\" id=\"" + id + "\">";
+        console.log(id);
+        document.getElementById("all_variants").innerHTML += add_code;
+    }
+    </script>
   </head>
   <body>
   <div class="bg-info navb">
@@ -27,13 +37,16 @@
     <form action="/make_voting/" method="post">
         {% csrf_token %}
         {{ form }}
+        <div id="all_variants">
         {% for variant in form.variants %}
         <br>
         <label for="{{variant.label}}">{{variant.label}}</label>
-        <input type="text" name="{{variant.label}}" id="{{variant.id}}">
+        <input type="text" name="{{variant.label}}" id="{{forloop.counter}}">
         {% endfor %}
+      </div>
         <input type="submit" value="Submit">
     </form>
+    <button onclick="add_variant_onclick()">Add variant</button>
   </div>
 
 
