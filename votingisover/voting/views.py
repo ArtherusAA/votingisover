@@ -6,6 +6,7 @@ from django.shortcuts import render
 from voting.models import Voting, Variant, Vote
 from voting.forms import VotingForm, CreateVotingForm
 from django import forms
+from static import draw_batch
 import datetime
 
 
@@ -31,6 +32,7 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 def voting(request):
+    draw_batch()
     context = {}
     current_user = request.user
     if not request.user.is_authenticated:
