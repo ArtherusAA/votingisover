@@ -7,7 +7,7 @@ from voting.models import Voting, Variant, Vote
 from voting.forms import VotingForm, CreateVotingForm
 from django import forms
 import datetime
-
+from test2 import draw_stat
 
 
 # Create your views here.
@@ -41,6 +41,7 @@ def voting(request):
                 variant = Variant.objects.filter(id=variant_id)
                 vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant[0])
                 vote.save()
+                draw_stat()
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
@@ -84,6 +85,7 @@ def make_voting(request):
                 if k != 'type' and k != 'header' and k[:7] == 'Variant':
                     variants.append(Variant(text = request.POST[k], voting_id = voting))
                     variants[-1].save()
+                    draw_stat()
         else:
             context['form'] = CreateVotingForm()
     else:
