@@ -30,16 +30,15 @@
 </div>
 <main role="main" class="flex-shrink-0">
     {% for voting in votings %}
-    <div class="container voteform bg-light border border-secondary rounded">
-        <img src="/media/tenor-2.gif" alt="тут должен быть Ricardo">
-        <h3>{{voting.header}}</h3>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">{{voting.variantFirstDescr}}</label>
+
+    <div class="container bg-light border border-secondary rounded">
+      <div class="row">
+        <div class="col">
+            <img src="/media/id{{voting.id}}.png" alt="тут должен быть Ricardo" class="leftpic">
         </div>
         <div class="col">
           <h3>{{voting.header}}</h3>
-          <form method="post">
+          <form method="post" action="/voting/">
             {% csrf_token %}
           {% for variant in voting.variants %}
           <div class="custom-control custom-radio">

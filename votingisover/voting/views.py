@@ -8,7 +8,7 @@ from voting.forms import VotingForm, CreateVotingForm
 from django import forms
 #from voting.statistic import draw_batch
 import datetime
-
+from test2 import draw_stat
 
 
 # Create your views here.
@@ -39,19 +39,26 @@ def voting(request):
         return redirect('/')
     context['username'] = current_user
     if request.method == "POST":
+        print("we are here")
+        print(request.POST)
+        print(request.POST.keys())
         votes = Vote.objects.filter(user_id = current_user)
         for key in request.POST.keys():
+            print(key[:6])
             if key[:6] == "voting":
                 variant_id = int(request.POST[key][7:])
-                variant = Variant.objects.filter(id=variant_id)
+                variant = Variant.objects.filter(id=variant_id)[0]
+                print("Я отдыхаю кста")
+                print(variant_id)
                 checVoted = False
                 for vt in votes:
-                    if variant.voting_id == Variant.objects.filter(id = vt.variant_id).voting_id:
+                    if variant.voting_id == Variant.objects.filter(id = vt.variant_id.id)[0].voting_id:
                         checVoted = True
                 if not(checVoted):
-                    vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant[0])
+                    vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant)
                     vote.save()
-            return redirect("/voting")
+                    draw_stat()
+                return redirect("/voting")
     context['votings'] = []
     all_variants = Variant.objects.all()
     for voting in Voting.objects.all():
@@ -97,6 +104,7 @@ def make_voting(request):
                 if k != 'type' and k != 'header' and k[:7] == 'Variant':
                     variants.append(Variant(text = request.POST[k], voting_id = voting))
                     variants[-1].save()
+                    draw_stat()
         else:
             context['form'] = CreateVotingForm()
         return redirect("/make_voting")
