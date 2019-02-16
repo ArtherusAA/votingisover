@@ -4,7 +4,8 @@ import numpy as np
 import sqlite3 as lite
 import sys
 
-con = lite.connect('/Users/jonathan/Documents/PromProg/Golosovanie/votingisover/votingisover/db.sqlite3')
+con = lite.connect('./db.sqlite3')
+
 with con:
     cur = con.cursor()
 
@@ -34,13 +35,15 @@ with con:
         plt.bar(x, y)
         plt.title('Соотношение голосования')
         plt.grid(True)   # линии вспомогательной сетки
-        plt.savefig('id' + str(rows_in_variant[i][2]) + '.png')
-        plt.show()
-    i = i + len(x)
-#print(i)
+        plt.savefig('./media/id' + str(rows_in_variant[i][2]) + '.png')
+        #plt.show()
+        plt.close(fig)
+        
+        i = i + len(x)
+        print(i)
 
-# print(rows_in_variant[i][1], ' ', ans[i])
-# print(rows_in_variant[i + 1][1], ' ', ans[i + 1])
-# print('')
-# x = [rows_in_variant[i][1], rows_in_variant[i + 1][1]]
-# y = [ans[i], ans[i + 1]]
+        # print(rows_in_variant[i][1], ' ', ans[i])
+        # print(rows_in_variant[i + 1][1], ' ', ans[i + 1])
+        # print('')
+        # x = [rows_in_variant[i][1], rows_in_variant[i + 1][1]]
+        # y = [ans[i], ans[i + 1]]
