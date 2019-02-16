@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Регистрация</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script>
+    function add_variant_onclick() {
+        let id = 1;
+        while (document.getElementById(id) != null)
+          id += 1;
+        let add_code = "<br>\n        <label class='text-r' for=\"Variant " + id + "\">Variant " + id + "</label>\n                <input class='form-control' type=\"text\" name=\"Variant " + id + "\" id=\"" + id + "\">";
+        console.log(id);
+        document.getElementById("all_variants").innerHTML += add_code;
+    }
+    </script>
+  </head>
+  <body>
+  <div class="bg-info navb">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="/">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/voting">Голосования</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/signup">Регистрация</a>
+        </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="container">
+    <h1 class="display-4 text-r">Конструктор Голосования</h1><br>
+    <form action="/make_voting/" method="post">
+            {% csrf_token %}
+            <label class="text-r">Тип голосования:</label>
+        <input type="text" class="form-control" id="{{ form.type }}
+        <br>
+            <label class="text-r">Название голосования:</label>
+        <input type="text" class="form-control" id="{{ form.header }}
+        <br>
+        <div id="all_variants">
+        {% for variant in form.variants %}
+        <br>
+        <label class="text-r" for="{{variant.label}}">{{variant.label}}</label>
+        <input class="form-control" type="text" name="{{variant.label}}" id="{{forloop.counter}}">
+        {% endfor %}
+      </div>
+        <br>
+        <input class="btn btn-success" type="submit" value="Submit">
+    </form>
+        <br>
+    <button class="btn btn btn-outline-info" onclick="add_variant_onclick()">Add variant</button>
+    </div></div>
+
+    {% block content %}
+
+  {% endblock %}
+  </body>
+</html>

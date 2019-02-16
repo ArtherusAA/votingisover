@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column h-100">
+<div class="bg-info navb">
+  <ul class="nav justify-content-center">
+      <li class="nav-item">
+          <a class="nav-link" href="/">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/make_voting">Создать голосование</a>
+      </li>
+      {% if not request.user.is_authenticated %}
+      <li class="nav-item">
+          <a class="nav-link" href="/signup">Регистрация</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+          <a class="nav-link" href="/exit">Выход</a>
+      </li>
+      {% endif %}
+  </ul>
+</div>
+<main role="main" class="flex-shrink-0">
+    {% for voting in votings %}
+    <div class="container voteform bg-light border border-secondary rounded">
+        <img src="/media/tenor-2.gif" alt="тут должен быть Ricardo">
+        <h3>{{voting.header}}</h3>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="customRadio1">{{voting.variantFirstDescr}}</label>
+        </div>
+        <div class="col">
+          <h3>{{voting.header}}</h3>
+          <form method="post">
+            {% csrf_token %}
+          {% for variant in voting.variants %}
+          <div class="custom-control custom-radio">
+              <input type="radio" id="variant{{variant.id}}" name="voting{{voting.id}}"
+              value="variant{{variant.id}}" class="custom-control-input">
+              <label class="custom-control-label" for="variant{{variant.id}}">{{variant.text}}</label>
+          </div>
+          {% endfor %}
+          <div>
+              <input class="btn btn-success" type="submit" value="Проголосовать">
+          </div>
+        </form>
+        </div>
+      </div>
+
+
+    </div>
+    {% endfor %}
+</main>
+</body>
+</html>
