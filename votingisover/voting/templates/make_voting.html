@@ -11,7 +11,7 @@
         let id = 1;
         while (document.getElementById(id) != null)
           id += 1;
-        let add_code = "<br>\n        <label for=\"Variant " + id + "\">Variant " + id + "</label>\n                <input type=\"text\" name=\"Variant " + id + "\" id=\"" + id + "\">";
+        let add_code = "<br>\n        <label class='text-r' for=\"Variant " + id + "\">Variant " + id + "</label>\n                <input class='form-control' type=\"text\" name=\"Variant " + id + "\" id=\"" + id + "\">";
         console.log(id);
         document.getElementById("all_variants").innerHTML += add_code;
     }
@@ -21,7 +21,7 @@
   <div class="bg-info navb">
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link" href="#">{{ username }}</a>
+            <a class="nav-link" href="/">{{ username }}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/voting">Голосования</a>
@@ -33,22 +33,28 @@
   </div>
   <div class="container">
     <div class="container">
-    <h2>Конструктор Голосования</h2>
+    <h1 class="display-4 text-r">Конструктор Голосования</h1><br>
     <form action="/make_voting/" method="post">
-        {% csrf_token %}
-        {{ form }}
+            {% csrf_token %}
+            <label class="text-r">Тип голосования:</label>
+        <input type="text" class="form-control" id="{{ form.type }}
+        <br>
+            <label class="text-r">Название голосования:</label>
+        <input type="text" class="form-control" id="{{ form.header }}
+        <br>
         <div id="all_variants">
         {% for variant in form.variants %}
         <br>
-        <label for="{{variant.label}}">{{variant.label}}</label>
-        <input type="text" name="{{variant.label}}" id="{{forloop.counter}}">
+        <label class="text-r" for="{{variant.label}}">{{variant.label}}</label>
+        <input class="form-control" type="text" name="{{variant.label}}" id="{{forloop.counter}}">
         {% endfor %}
       </div>
-        <input type="submit" value="Submit">
+        <br>
+        <input class="btn btn-success" type="submit" value="Submit">
     </form>
-    <button onclick="add_variant_onclick()">Add variant</button>
-  </div>
-
+        <br>
+    <button class="btn btn btn-outline-info" onclick="add_variant_onclick()">Add variant</button>
+    </div></div>
 
     {% block content %}
 

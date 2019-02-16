@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 bg-dark">
 <div class="bg-info navb">
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link" href="#">{{ username }}</a>
+            <a class="nav-link" href="/">{{ username }}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/voting">Голосования</a>
@@ -32,90 +32,20 @@
     </ul>
 </div>
 <main role="main" class="flex-shrink-0">
-    <div class="container voteform bg-light border border-secondary rounded">
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Var1</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio2">Var2</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio3">Var3</label>
-        </div>
-        <div  class="custom-control">
-            <button type="submit" class="btn btn-primary">Проголосовать</button>
-        </div>
+    <div class="container py-5">
+        <h1 class="display-4 pb-2 text-r text-white">Создавайте голосования при помощи нашего уникального конструктора</h1>
+        <img class="rounded" src="/media/constructor.png" alt="">
+        <br>
+        <br>
+        <a class="btn btn-outline-light text-r btn-lg" href="/make_voting">Создать</a>
     </div>
-    <div class="container voteform bg-light border border-secondary rounded">
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Var1</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio2">Var2</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio3">Var3</label>
-        </div>
-        <div  class="custom-control">
-            <button type="submit" class="btn btn-primary">Проголосовать</button>
-        </div>
-    </div>
-    <div class="container voteform bg-light border border-secondary rounded">
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Var1</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio2">Var2</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio3">Var3</label>
-        </div>
-        <div  class="custom-control">
-            <button type="submit" class="btn btn-primary">Проголосовать</button>
-        </div>
-    </div>
-    <div class="container voteform bg-light border border-secondary rounded">
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Var1</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio2">Var2</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio3">Var3</label>
-        </div>
-        <div  class="custom-control">
-            <button type="submit" class="btn btn-primary">Проголосовать</button>
-        </div>
-    </div>
-    <div class="container voteform bg-light border border-secondary rounded">
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio1">Var1</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio2">Var2</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-            <label class="custom-control-label" for="customRadio3">Var3</label>
-        </div>
-        <div  class="custom-control">
-            <button type="submit" class="btn btn-primary">Проголосовать</button>
-        </div>
+    <hr class="container border-3 border-white" style="border-width: 0.75rem !important;">
+    <div class="container py-5">
+        <h1 class="display-4 pb-2 text-r text-white">Голосуйте</h1>
+        <img class="rounded" src="/media/voting.png" alt="">
+        <br>
+        <br>
+        <a class="btn btn-outline-light text-r btn-lg" href="/voting">Голосования</a>
     </div>
 </main>
 </body>

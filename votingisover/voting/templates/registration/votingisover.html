@@ -12,7 +12,7 @@
 <div class="bg-info navb">
   <ul class="nav justify-content-center">
       <li class="nav-item">
-          <a class="nav-link" href="#">{{ username }}</a>
+          <a class="nav-link" href="/">{{ username }}</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="/make_voting">Создать голосование</a>
@@ -30,19 +30,12 @@
 </div>
 <main role="main" class="flex-shrink-0">
     {% for voting in votings %}
-<<<<<<< HEAD
     <div class="container voteform bg-light border border-secondary rounded">
         <img src="/media/tenor-2.gif" alt="тут должен быть Ricardo">
         <h3>{{voting.header}}</h3>
         <div class="custom-control custom-radio">
             <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
             <label class="custom-control-label" for="customRadio1">{{voting.variantFirstDescr}}</label>
-=======
-    <div class="container bg-light border border-secondary rounded">
-      <div class="row">
-        <div class="col">
-            <img src="/media/tenor-2.gif" alt="тут должен быть Ricardo" class="leftpic">
->>>>>>> 8634fcf05ae5b9a87682aa59e4888d90116e1490
         </div>
         <div class="col">
           <h3>{{voting.header}}</h3>
@@ -55,8 +48,8 @@
               <label class="custom-control-label" for="variant{{variant.id}}">{{variant.text}}</label>
           </div>
           {% endfor %}
-          <div  class="custom-control">
-              <input type="submit" value="Проголосовать">
+          <div>
+              <input class="btn btn-success" type="submit" value="Проголосовать">
           </div>
         </form>
         </div>
@@ -66,9 +59,5 @@
     </div>
     {% endfor %}
 </main>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8634fcf05ae5b9a87682aa59e4888d90116e1490
 </body>
 </html>
