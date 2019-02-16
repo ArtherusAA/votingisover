@@ -6,6 +6,7 @@ from django.shortcuts import render
 from voting.models import Voting, Variant, Vote
 from voting.forms import VotingForm, CreateVotingForm
 from django import forms
+#from voting.statistic import draw_batch
 import datetime
 
 
@@ -31,18 +32,25 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 def voting(request):
+    #draw_batch()
     context = {}
     current_user = request.user
     if not request.user.is_authenticated:
         return redirect('/')
     context['username'] = current_user
     if request.method == "POST":
+        votes = Vote.objects.filter(user_id = current_user)
         for key in request.POST.keys():
             if key[:6] == "voting":
                 variant_id = int(request.POST[key][7:])
                 variant = Variant.objects.filter(id=variant_id)
-                vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant[0])
-                vote.save()
+                checVoted = False
+                for vt in votes:
+                    if variant.voting_id == Variant.objects.filter(id = vt.variant_id).voting_id:
+                        checVoted = True
+                if not(checVoted):
+                    vote = Vote(date=datetime.datetime.now(), user_id=current_user, variant_id=variant[0])
+                    vote.save()
             return redirect("/voting")
     context['votings'] = []
     all_variants = Variant.objects.all()
