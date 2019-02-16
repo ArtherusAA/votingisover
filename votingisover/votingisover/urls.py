@@ -30,7 +30,8 @@ urlpatterns = [
          auth_views.LoginView.as_view(),
          name='login'),
     path('exit/', views.exit),
-    path('voting/', views.voting)
+    path('voting/', views.voting),
+    path('make_voting/', views.make_voting)
 ]
 
 urlpatterns += staticfiles_urlpatterns()
